@@ -1,3 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/themes/lara-dark-purple/theme.css";
 @import "primeng/resources/primeng.css";
+::-webkit-scrollbar {
+  height: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #b7a5ee;
+}
+.container {
+  position: relative;
+  max-width: 1500px;
+  padding: 0 20px;
+  margin: 0 auto;
+}

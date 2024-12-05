@@ -1,0 +1,45 @@
+<div class="container">
+  <p-table [value]="userList" [tableStyle]="{ 'min-width': '60rem' }">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        userList
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Job</th>
+        <th>Edit</th>
+        <th>Delet</th>
+        <th>Review</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.name }}</td>
+        <td>
+          <img
+            [src]="user.image"
+            [alt]="user.name"
+            width="100"
+            class="shadow-4"
+          />
+        </td>
+        <td>{{ user.job }}</td>
+        <td><i class="fa-solid fa-pencil"></i></td>
+        <td><i class="fa-solid fa-trash-can"></i></td>
+        <td>
+          <a [routerLink]="['/user/'+user.docId]"
+            ><i class="fa-solid fa-eye"></i
+          ></a>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{ userList ? userList.length : 0 }} users.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
