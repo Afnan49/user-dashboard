@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserServiceService } from '../user-service.service';
-import { skill, UserDB } from '../user-model';
+import { skill, social, UserDB } from '../user-model';
 import { ProgressBarModule } from 'primeng/progressbar';
 @Component({
   selector: 'app-user-details',
@@ -14,6 +14,7 @@ export class UserDetailsComponent implements OnInit {
   userId: number = 0;
   user: UserDB | null = null;
   userSills: [string, skill][] = [];
+  userMedia: [string, social][] = [];
 
   constructor(
     private router: ActivatedRoute,
@@ -32,7 +33,9 @@ export class UserDetailsComponent implements OnInit {
     this.userServ.getUserDoc(docId).subscribe((res) => {
       this.user = res;
       this.userSills = Object.entries(this.user.skills);
-      console.log(this.userSills);
+      console.log(this.user.skills);
+      this.userMedia = Object.entries(this.user.media);
+      console.log(this.userMedia);
     });
   }
 }

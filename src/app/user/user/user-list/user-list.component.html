@@ -20,6 +20,7 @@
         <td>{{ user.name }}</td>
         <td>
           <img
+            [routerLink]="['/user/' + user.docId]"
             [src]="user.image"
             [alt]="user.name"
             width="100"
@@ -30,7 +31,7 @@
         <td><i class="fa-solid fa-pencil"></i></td>
         <td><i class="fa-solid fa-trash-can"></i></td>
         <td>
-          <a [routerLink]="['/user/'+user.docId]"
+          <a [routerLink]="['/user/' + user.docId]"
             ><i class="fa-solid fa-eye"></i
           ></a>
         </td>

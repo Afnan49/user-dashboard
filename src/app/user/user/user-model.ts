@@ -11,7 +11,7 @@ export interface UserDB {
   goals: string[];
   skills: skill[];
   personality: string[];
-  social_media: social[];
+  media: social[];
 }
 export interface skill {
   skill: number;

@@ -11,41 +11,71 @@
         <p>{{ user.location }}</p>
       </div>
     </div>
-    <div class="user-About">
-      <div class="right-side">
-        <div class="about">
-          <h4>About</h4>
-          <p>{{ user.about }}</p>
-        </div>
-        <div class="bio">
-          <h4>Bio</h4>
-          <p>{{ user.bio }}</p>
-        </div>
-        <div class="motivation">
-          <h4>Motivation</h4>
-          @for(motiv of user.motivation;track motiv){
-          <p>🔸 {{ motiv }}</p>
-          }
-        </div>
-        <div class="goals">
-          <h4>Goals</h4>
-          @for(goal of user.goals;track goal){
-          <p>🔸 {{ goal }}</p>
-          }
-        </div>
+
+    <div class="right-side">
+      <div class="about">
+        <h4>about</h4>
+        <p>{{ user.about }}</p>
       </div>
-      <div class="left-side">
-        <div class="skils">
-          @for(skill of userSills;track skill){
-            <p>{{ skill[1] }}</p>
-            <div class="card">
-                <p-progressBar [value]="skill[1]" />
-            </div>
-          <p>{{ skill[0] }}</p>
-         
-          }
-        </div>
+      <div class="bio">
+        <h4>bio</h4>
+        <p>{{ user.bio }}</p>
       </div>
+      <div class="motivation">
+        <h4>motivation</h4>
+        <p>{{ user.motivation }}</p>
+      </div>
+      <div class="goals">
+        <h4>goals</h4>
+        @for(goal of user.goals;track goal){
+        <ul>
+          <li>{{ goal }}</li>
+        </ul>
+        }
+      </div>
+    </div>
+    <div class="left-side">
+      <!-- ============== -->
+      <div class="skils">
+        <h4>skills</h4>
+        @for(skill of userSills;track skill){
+        <div class="skil-content">
+          <p class="skil-value">{{ skill[1] }}%</p>
+          <div class="card">
+            <p-progressBar [value]="skill[1]" />
+          </div>
+          <p class="skil-name">{{ skill[0] }}</p>
+        </div>
+        }
+      </div>
+      <!-- ============== -->
+      <div class="personality">
+        <h4>personality</h4>
+        @for(personal of user.personality;track personal){
+        <ul>
+          <li>{{ personal }}</li>
+        </ul>
+        <!-- <p>{{ personal }}</p> -->
+        }
+      </div>
+      <!-- =============== -->
+      <div class="social">
+        <h4>social media</h4>
+        @for(social of userMedia;track social){
+        <a [href]="social[1]">
+          @if(social[0]==='Facebook'){
+          <i class="fa-brands fa-facebook"></i>
+          }@else if (social[0]==='WhatsApp') {
+          <i class="fa-brands fa-square-whatsapp"></i>
+          }@else if (social[0]==='Instagram') {
+          <i class="fa-brands fa-square-instagram"></i>
+          }@else{
+          <i class="fa-brands fa-linkedin"></i>
+          }
+        </a>
+        }
+      </div>
+      <!-- =============== -->
     </div>
   </div>
   }
