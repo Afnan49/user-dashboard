@@ -3,10 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { UserServiceService } from '../user-service.service';
 import { skill, social, UserDB } from '../user-model';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { SafeLinks } from '../../../safelinkes.directive';
 @Component({
   selector: 'app-user-details',
   standalone: true,
-  imports: [ProgressBarModule],
+  imports: [ProgressBarModule, SafeLinks],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.css',
 })

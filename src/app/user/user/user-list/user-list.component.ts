@@ -28,4 +28,14 @@ export class UserListComponent implements OnInit {
       this.userList = res;
     });
   }
+  // ===========================<  REMOVE USER DOC >============================
+
+  removeDoc(userDocId: string) {
+    const confirm = window.confirm('are you sure you want to delete this user');
+    if (confirm) {
+      this.userServ.removeUserDoc(userDocId);
+    } else {
+      return;
+    }
+  }
 }

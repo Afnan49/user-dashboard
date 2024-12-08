@@ -62,7 +62,7 @@
       <div class="social">
         <h4>social media</h4>
         @for(social of userMedia;track social){
-        <a [href]="social[1]">
+        <a [href]="social[1]" appSafeLinks>
           @if(social[0]==='Facebook'){
           <i class="fa-brands fa-facebook"></i>
           }@else if (social[0]==='WhatsApp') {

@@ -4,6 +4,7 @@ import { UserDB } from './user-model';
 import {
   collection,
   collectionData,
+  deleteDoc,
   doc,
   docData,
   Firestore,
@@ -26,5 +27,10 @@ export class UserServiceService {
   getUserDoc(id: string): Observable<UserDB> {
     const userDoc = doc(this.db, 'users', id);
     return docData(userDoc);
+  }
+  // ===========================< REMOVE USER DOC >======================
+  removeUserDoc(id: string) {
+    const userDoc = doc(this.db, 'users', id);
+    return deleteDoc(userDoc);
   }
 }
