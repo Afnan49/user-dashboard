@@ -34,9 +34,7 @@ export class UserDetailsComponent implements OnInit {
     this.userServ.getUserDoc(docId).subscribe((res) => {
       this.user = res;
       this.userSills = Object.entries(this.user.skills);
-      console.log(this.user.skills);
       this.userMedia = Object.entries(this.user.media);
-      console.log(this.userMedia);
     });
   }
 }

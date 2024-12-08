@@ -1,0 +1,74 @@
+form {
+  padding: 27px;
+}
+.group {
+  position: relative;
+  height: 60px;
+  line-height: 60px;
+  margin-bottom: 30px;
+}
+input,
+select {
+  position: absolute;
+  outline: none;
+  font-size: 2.2em;
+  padding: 0 30px;
+  line-height: 60px;
+  border-radius: 10px;
+  border: 2px solid #f0ffff;
+  background: transparent;
+  transition: 0.5s ease;
+  z-index: 1111;
+  width: 100%;
+}
+select {
+  width: 80%;
+  right: 0;
+}
+select option {
+  background-color: #1f2937;
+}
+label {
+  font-size: 1.5em;
+  color: #f0ffff;
+  padding: 0 25px;
+  margin: 0 20px;
+  background: #1f2937;
+}
+.text {
+  position: absolute;
+  font-size: 1.5em;
+  color: #f0ffff;
+  padding: 0 25px;
+  margin: 0 20px;
+  background: #1f2937;
+  transition: 0.5s ease;
+  z-index: 2222222;
+  height: 60px;
+  width: 99%;
+  top: 2px;
+  left: -15px;
+  border-radius: 10px;
+}
+.group input:focus,
+.group select:focus {
+  color: #b7a5ee;
+  border: 4px solid #b7a5ee;
+  background-color: transparent;
+}
+.group input:focus ~ .text {
+  color: #b7a5ee;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 12px;
+  transform: translate(-15px, -16px) scale(0.88);
+  z-index: 111111;
+  left: 15px;
+  width: fit-content;
+}
+.group select:focus ~ label {
+  color: #b7a5ee;
+}
+.group input::spelling-error {
+  text-decoration: none;
+}
