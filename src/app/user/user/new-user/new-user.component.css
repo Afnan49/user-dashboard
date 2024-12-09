@@ -8,7 +8,8 @@ form {
   margin-bottom: 30px;
 }
 input,
-select {
+select,
+textarea {
   position: absolute;
   outline: none;
   font-size: 2.2em;
@@ -51,12 +52,14 @@ label {
   border-radius: 10px;
 }
 .group input:focus,
-.group select:focus {
+.group select:focus,
+.group textarea:focus {
   color: #b7a5ee;
   border: 4px solid #b7a5ee;
   background-color: transparent;
 }
-.group input:focus ~ .text {
+.group input:focus ~ .text,
+.group textarea:focus ~ .text {
   color: #b7a5ee;
   height: 30px;
   line-height: 30px;
@@ -71,4 +74,10 @@ label {
 }
 .group input::spelling-error {
   text-decoration: none;
+}
+.text-group {
+  height: 113px;
+}
+.text-earea {
+  height: 100%;
 }

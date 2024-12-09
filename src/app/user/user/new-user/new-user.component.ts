@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
+import { UserDB } from '../user-model';
 
 @Component({
   selector: 'app-new-user',
@@ -11,5 +12,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './new-user.component.css',
 })
 export class NewUserComponent {
-  username: string = '';
+  user: UserDB = {} as UserDB;
+  onSubmit() {
+    console.log(this.user);
+  }
 }

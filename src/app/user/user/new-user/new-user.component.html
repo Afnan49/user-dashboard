@@ -9,30 +9,55 @@
         <div
           class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
         >
-          <form>
+          <form (ngSubmit)="onSubmit()">
             <div class="group">
-              <input type="text" id="name" autocomplete="off" />
+              <input
+                type="text"
+                id="name"
+                name="name"
+                autocomplete="off"
+                [(ngModel)]="user.name"
+              />
               <label for="name" class="text">Your Name</label>
             </div>
             <div class="group">
-              <input type="text" id="job" autocomplete="off" />
+              <input
+                type="text"
+                id="job"
+                name="job"
+                autocomplete="off"
+                [(ngModel)]="user.job"
+              />
               <label for="job" class="text">Your Job</label>
             </div>
             <div class="group">
-              <input type="text" id="age" autocomplete="off" />
+              <input
+                type="text"
+                id="age"
+                name="age"
+                autocomplete="off"
+                [(ngModel)]="user.age"
+              />
               <label for="age" class="text">Age</label>
             </div>
             <div class="group">
-              <select name="" id="gender">
+              <select name="gender" id="gender" [(ngModel)]="user.gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
               <label for="gender">Geander</label>
             </div>
             <div class="group">
-              <input type="text" id="location" autocomplete="off" />
+              <input
+                type="text"
+                id="location"
+                name="location"
+                autocomplete="off"
+                [(ngModel)]="user.location"
+              />
               <label for="location" class="text">Location</label>
             </div>
+            <button>save</button>
           </form>
         </div>
       </div>
@@ -57,7 +82,54 @@
         <div
           class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
         >
-          Content II
+          <form (ngSubmit)="onSubmit()">
+            <div class="group text-group">
+              <textarea
+                name="about"
+                id="about"
+                autocomplete="off"
+                [(ngModel)]="user.about"
+              ></textarea>
+              <label for="about" class="text text-earea">About</label>
+            </div>
+            <div class="group text-group">
+              <textarea
+                name="bio"
+                id="bio"
+                autocomplete="off"
+                [(ngModel)]="user.bio"
+              ></textarea>
+              <label for="bio" class="text text-earea">Bio</label>
+            </div>
+            <div class="group">
+              <input
+                type="text"
+                id="age"
+                name="age"
+                autocomplete="off"
+                [(ngModel)]="user.age"
+              />
+              <label for="age" class="text">Age</label>
+            </div>
+            <div class="group">
+              <select name="gender" id="gender" [(ngModel)]="user.gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <label for="gender">Geander</label>
+            </div>
+            <div class="group">
+              <input
+                type="text"
+                id="location"
+                name="location"
+                autocomplete="off"
+                [(ngModel)]="user.location"
+              />
+              <label for="location" class="text">Location</label>
+            </div>
+            <button>save</button>
+          </form>
         </div>
       </div>
       <div class="flex pt-4 justify-content-between">
