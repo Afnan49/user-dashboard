@@ -9,7 +9,7 @@ export interface UserDB {
   bio: string;
   motivation: string[];
   goals: string[];
-  skills: skill[];
+  skills: { [key: string]: string };
   personality: string[];
   media: social[];
 }

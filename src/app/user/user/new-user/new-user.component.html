@@ -9,7 +9,7 @@
         <div
           class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
         >
-          <form (ngSubmit)="onSubmit()">
+          <form>
             <div class="group">
               <input
                 type="text"
@@ -40,7 +40,7 @@
               />
               <label for="age" class="text">Age</label>
             </div>
-            <div class="group">
+            <div class="group select-group">
               <select name="gender" id="gender" [(ngModel)]="user.gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -57,7 +57,6 @@
               />
               <label for="location" class="text">Location</label>
             </div>
-            <button>save</button>
           </form>
         </div>
       </div>
@@ -82,7 +81,7 @@
         <div
           class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
         >
-          <form (ngSubmit)="onSubmit()">
+          <form>
             <div class="group text-group">
               <textarea
                 name="about"
@@ -103,32 +102,40 @@
             </div>
             <div class="group">
               <input
+                #motivationInput
+                placeholder="Add your motivations separated by commas"
                 type="text"
-                id="age"
-                name="age"
+                id="motivation"
+                name="motivation"
                 autocomplete="off"
-                [(ngModel)]="user.age"
+                [(ngModel)]="user.motivation"
               />
-              <label for="age" class="text">Age</label>
-            </div>
-            <div class="group">
-              <select name="gender" id="gender" [(ngModel)]="user.gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-              <label for="gender">Geander</label>
+              <label for="motivation" class="text">Motivation</label>
             </div>
             <div class="group">
               <input
+                #galsInput
+                placeholder="Add your goals separated by commas"
                 type="text"
-                id="location"
-                name="location"
+                id="goals"
+                name="goals"
                 autocomplete="off"
-                [(ngModel)]="user.location"
+                [(ngModel)]="user.goals"
               />
-              <label for="location" class="text">Location</label>
+              <label for="goals" class="text">Goals</label>
             </div>
-            <button>save</button>
+            <div class="group">
+              <input
+                #personalInput
+                placeholder="Add your motivations separated by commas"
+                type="text"
+                id="personality"
+                name="personality"
+                autocomplete="off"
+                [(ngModel)]="user.personality"
+              />
+              <label for="personality" class="text">Personality</label>
+            </div>
           </form>
         </div>
       </div>
@@ -143,11 +150,18 @@
           icon="pi pi-arrow-right"
           iconPos="right"
           (onClick)="nextCallback.emit()"
+          (onClick)="
+            processMotivations(
+              motivationInput.value,
+              galsInput.value,
+              personalInput.value
+            )
+          "
         />
       </div>
     </ng-template>
   </p-stepperPanel>
-  <p-stepperPanel header="Header III">
+  <p-stepperPanel header="Image & Skills">
     <ng-template
       pTemplate="content"
       let-prevCallback="prevCallback"
@@ -157,7 +171,48 @@
         <div
           class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
         >
-          Content III
+          <div class="user-image">
+            <ngx-dropzone (change)="onSelect($event)">
+              <ngx-dropzone-label
+                ><i class="fa-solid fa-camera-retro fs-3 camera"></i
+              ></ngx-dropzone-label>
+              <ngx-dropzone-image-preview
+                class="selected-image-container"
+                ngProjectAs="ngx-dropzone-preview"
+                *ngFor="let f of files"
+                [file]="f"
+                [removable]="true"
+                (removed)="onRemove(f)"
+              >
+              </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+          </div>
+          <form>
+            <div class="group">
+              <input
+                id="skillKey"
+                #keyInput
+                type="text"
+                placeholder="Enter skill name"
+              />
+              <label for="skillKey" class="text">Skill</label>
+            </div>
+            <div class="group">
+              <input
+                id="skillValue"
+                #valueInput
+                type="text"
+                placeholder="Enter proficiency level"
+              />
+              <label for="skillValue" class="text">Proficiency</label>
+            </div>
+            <p-button
+              label="Add skill"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              (onClick)="addSkill(keyInput.value, valueInput.value)"
+            />
+          </form>
         </div>
       </div>
       <div class="flex pt-4 justify-content-start">
@@ -165,6 +220,12 @@
           label="Back"
           icon="pi pi-arrow-left"
           (onClick)="prevCallback.emit()"
+        />
+        <p-button
+          label="submit"
+          icon="pi pi-arrow-right"
+          iconPos="right"
+          (onClick)="onSubmit()"
         />
       </div>
     </ng-template>

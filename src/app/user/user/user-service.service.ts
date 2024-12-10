@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { UserDB } from './user-model';
 import {
+  addDoc,
   collection,
   collectionData,
   deleteDoc,
@@ -16,7 +17,16 @@ import { Observable } from 'rxjs';
 })
 export class UserServiceService {
   private db = inject(Firestore);
+  private httpClient = inject(HttpClient);
 
+  // ===========================< UPLOAD USER IMAGE >======================
+  uploadImage(valus: any): Observable<any> {
+    let data = valus;
+    return this.httpClient.post(
+      `https://api.cloudinary.com/v1_1/dou5mcich/image/upload`,
+      data
+    );
+  }
   // ===========================< GET ALL USERS >========================
   userCollection = collection(this.db, 'users');
 
@@ -27,6 +37,10 @@ export class UserServiceService {
   getUserDoc(id: string): Observable<UserDB> {
     const userDoc = doc(this.db, 'users', id);
     return docData(userDoc);
+  }
+  // ===========================< ADD USER DOC >======================
+  addUserDoc(user: UserDB) {
+    addDoc(this.userCollection, user);
   }
   // ===========================< REMOVE USER DOC >======================
   removeUserDoc(id: string) {
