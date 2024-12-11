@@ -16,8 +16,26 @@ import { Router } from '@angular/router';
   styleUrl: './new-user.component.css',
 })
 export class NewUserComponent {
-  user: UserDB = {} as UserDB;
-
+  user: UserDB = {
+    name: '',
+    job: '',
+    age: 0,
+    gender: '',
+    location: '',
+    image: '',
+    about: '',
+    bio: '',
+    motivation: [],
+    goals: [],
+    skills: {},
+    personality: [],
+    media: {
+      Facebook: '',
+      Instagram: '',
+      LinkedIn: '',
+      WhatsApp: '',
+    },
+  };
   private userServ = inject(UserServiceService);
   private route = inject(Router);
 
@@ -47,7 +65,6 @@ export class NewUserComponent {
   image: string = '';
   onSelect(event: any) {
     this.files.push(...event.addedFiles);
-    console.log(this.files[0]);
   }
 
   onRemove(event: any) {
@@ -55,18 +72,21 @@ export class NewUserComponent {
   }
 
   onSubmit() {
-    const file_data = this.files[0];
-    const data = new FormData();
-    data.append('file', file_data);
-    data.append('upload_preset', 'user_dashboard');
-    data.append('cloud_name', 'dou5mcich');
+    if (this.files.length > 0 && this.files.length < 2) {
+      const file_data = this.files[0];
+      const data = new FormData();
+      data.append('file', file_data);
+      data.append('upload_preset', 'user_dashboard');
+      data.append('cloud_name', 'dou5mcich');
 
-    this.userServ.uploadImage(data).subscribe((res) => {
-      this.image = res.secure_url;
-      this.user.image = this.image;
-    });
-    console.log(this.user);
-    // this.userServ.addUserDoc(this.user);
-    // this.route.navigate(['/list']);
+      this.userServ.uploadImage(data).subscribe((res) => {
+        if (res && res.secure_url) {
+          this.image = res.secure_url;
+          this.user.image = this.image;
+          this.userServ.addUserDoc(this.user);
+          this.route.navigate(['/list']);
+        }
+      });
+    }
   }
 }

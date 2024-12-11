@@ -15,7 +15,7 @@ export class UserDetailsComponent implements OnInit {
   userId: number = 0;
   user: UserDB | null = null;
   userSills: [string, string][] = [];
-  userMedia: [string, social][] = [];
+  userMedia: [string, string][] = [];
 
   constructor(
     private router: ActivatedRoute,
@@ -33,7 +33,6 @@ export class UserDetailsComponent implements OnInit {
   getUserDoc(docId: string) {
     this.userServ.getUserDoc(docId).subscribe((res) => {
       this.user = res;
-      console.log(this.user);
       this.userSills = Object.entries(this.user.skills);
       this.userMedia = Object.entries(this.user.media);
     });

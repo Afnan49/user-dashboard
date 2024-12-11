@@ -9,6 +9,22 @@
         <div
           class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
         >
+          <div class="user-image">
+            <ngx-dropzone (change)="onSelect($event)">
+              <ngx-dropzone-label
+                ><i class="fa-solid fa-camera-retro fs-3 camera"></i
+              ></ngx-dropzone-label>
+              <ngx-dropzone-image-preview
+                class="selected-image-container"
+                ngProjectAs="ngx-dropzone-preview"
+                *ngFor="let f of files"
+                [file]="f"
+                [removable]="true"
+                (removed)="onRemove(f)"
+              >
+              </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+          </div>
           <form>
             <div class="group">
               <input
@@ -18,7 +34,7 @@
                 autocomplete="off"
                 [(ngModel)]="user.name"
               />
-              <label for="name" class="text">Your Name</label>
+              <label for="name" class="text">Name</label>
             </div>
             <div class="group">
               <input
@@ -28,7 +44,7 @@
                 autocomplete="off"
                 [(ngModel)]="user.job"
               />
-              <label for="job" class="text">Your Job</label>
+              <label for="job" class="text">Job</label>
             </div>
             <div class="group">
               <input
@@ -127,7 +143,7 @@
             <div class="group">
               <input
                 #personalInput
-                placeholder="Add your motivations separated by commas"
+                placeholder="Add your personality separated by commas"
                 type="text"
                 id="personality"
                 name="personality"
@@ -139,7 +155,7 @@
           </form>
         </div>
       </div>
-      <div class="flex pt-4 justify-content-between">
+      <div class="buttons">
         <p-button
           label="Back"
           icon="pi pi-arrow-left"
@@ -171,26 +187,11 @@
         <div
           class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
         >
-          <div class="user-image">
-            <ngx-dropzone (change)="onSelect($event)">
-              <ngx-dropzone-label
-                ><i class="fa-solid fa-camera-retro fs-3 camera"></i
-              ></ngx-dropzone-label>
-              <ngx-dropzone-image-preview
-                class="selected-image-container"
-                ngProjectAs="ngx-dropzone-preview"
-                *ngFor="let f of files"
-                [file]="f"
-                [removable]="true"
-                (removed)="onRemove(f)"
-              >
-              </ngx-dropzone-image-preview>
-            </ngx-dropzone>
-          </div>
           <form>
             <div class="group">
               <input
                 id="skillKey"
+                name="skillKey"
                 #keyInput
                 type="text"
                 placeholder="Enter skill name"
@@ -200,6 +201,7 @@
             <div class="group">
               <input
                 id="skillValue"
+                name="skillValue"
                 #valueInput
                 type="text"
                 placeholder="Enter proficiency level"
@@ -207,15 +209,56 @@
               <label for="skillValue" class="text">Proficiency</label>
             </div>
             <p-button
+              class="skill-button"
               label="Add skill"
               icon="pi pi-arrow-right"
               iconPos="right"
               (onClick)="addSkill(keyInput.value, valueInput.value)"
             />
+            <div class="group social-face">
+              <input
+                id="facebook"
+                name="facebook"
+                [(ngModel)]="user.media.Facebook"
+                type="text"
+                placeholder="Enter Facebook URL"
+              />
+              <label for="facebook" class="text">Facebook</label>
+            </div>
+            <div class="group">
+              <input
+                id="instagram"
+                name="instagram"
+                [(ngModel)]="user.media.Instagram"
+                type="text"
+                placeholder="Enter Instagram URL"
+              />
+              <label for="instagram" class="text">Instagram</label>
+            </div>
+            <div class="group">
+              <input
+                id="linkedin"
+                name="linkedin"
+                [(ngModel)]="user.media.LinkedIn"
+                type="text"
+                placeholder="Enter Linked-In URL"
+              />
+              <label for="linkedin" class="text">Linked In</label>
+            </div>
+            <div class="group">
+              <input
+                id="whatsapp"
+                name="whatsapp"
+                [(ngModel)]="user.media.WhatsApp"
+                type="text"
+                placeholder="Enter WhatsApp URL"
+              />
+              <label for="whatsapp" class="text">WhatAapp</label>
+            </div>
           </form>
         </div>
       </div>
-      <div class="flex pt-4 justify-content-start">
+      <div class="buttons">
         <p-button
           label="Back"
           icon="pi pi-arrow-left"

@@ -11,11 +11,14 @@ export interface UserDB {
   goals: string[];
   skills: { [key: string]: string };
   personality: string[];
-  media: social[];
+  media: social;
 }
 export interface skill {
   skill: number;
 }
 export interface social {
-  social: string;
+  Facebook: string;
+  Instagram: string;
+  LinkedIn: string;
+  WhatsApp: string;
 }

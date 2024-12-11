@@ -39,6 +39,8 @@ label {
   top: 2px;
   left: -15px;
   border-radius: 10px;
+  text-transform: capitalize;
+  font-style: italic;
 }
 .group input:focus,
 .group select:focus,
@@ -86,4 +88,20 @@ label {
 }
 :host ::ng-deep ngx-dropzone i {
   font-size: 77px;
+}
+:host ::ng-deep .selected-image-container {
+  width: 100%;
+  height: 89%;
+}
+:host ::ng-deep .selected-image-container img {
+  width: 100%;
+  height: 100%;
+}
+.social-face {
+  margin-top: 20px;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

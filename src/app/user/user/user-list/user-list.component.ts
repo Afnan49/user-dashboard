@@ -24,7 +24,6 @@ export class UserListComponent implements OnInit {
   // ===========================< GET ALL USERS >============================
   getUsers() {
     this.userServ.getAllUsers().subscribe((res) => {
-      console.log(res);
       this.userList = res;
     });
   }
