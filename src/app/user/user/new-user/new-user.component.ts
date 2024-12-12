@@ -5,13 +5,20 @@ import { FormsModule } from '@angular/forms';
 import { UserDB } from '../user-model';
 import { UserServiceService } from '../user-service.service';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { NgFor } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-user',
   standalone: true,
-  imports: [StepperModule, ButtonModule, FormsModule, NgxDropzoneModule, NgFor],
+  imports: [
+    StepperModule,
+    ButtonModule,
+    FormsModule,
+    NgxDropzoneModule,
+    NgFor,
+    NgClass,
+  ],
   templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.css',
 })
@@ -19,7 +26,7 @@ export class NewUserComponent {
   user: UserDB = {
     name: '',
     job: '',
-    age: 0,
+    age: 20,
     gender: '',
     location: '',
     image: '',
@@ -38,6 +45,7 @@ export class NewUserComponent {
   };
   private userServ = inject(UserServiceService);
   private route = inject(Router);
+  minlength: any;
 
   processMotivations(
     motivInput: string,

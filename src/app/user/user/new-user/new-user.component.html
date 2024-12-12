@@ -28,48 +28,124 @@
           <form>
             <div class="group">
               <input
+                required="true"
+                minlength="8"
+                #nameInput="ngModel"
                 type="text"
                 id="name"
                 name="name"
                 autocomplete="off"
                 [(ngModel)]="user.name"
+                [ngClass]="{
+                  invalid:
+                    (nameInput.touched || nameInput.dirty) && nameInput.invalid
+                }"
               />
               <label for="name" class="text">Name</label>
             </div>
+            @if(nameInput.errors &&(nameInput.touched||nameInput.dirty)){
+            <div class="invalid-text">
+              @if(nameInput.errors['required']){
+              <span>Name is required</span>
+              } @if(nameInput.errors['minlength']){
+              <span>Name must be at lest 8 charachter</span>
+              }
+            </div>
+            }
             <div class="group">
               <input
+                required="true"
+                minlength="3"
+                #jobInput="ngModel"
                 type="text"
                 id="job"
                 name="job"
                 autocomplete="off"
                 [(ngModel)]="user.job"
+                [ngClass]="{
+                  invalid:
+                    (jobInput.touched || jobInput.dirty) && jobInput.invalid
+                }"
               />
               <label for="job" class="text">Job</label>
             </div>
+            @if(jobInput.errors &&(jobInput.touched||jobInput.dirty)){
+            <div class="invalid-text">
+              @if(jobInput.errors['required']){
+              <span>Job is required</span>
+              } @if(jobInput.errors['minlength']){
+              <span>Job must be at lest 3 charachter</span>
+              }
+            </div>
+            }
             <div class="group">
               <input
-                type="text"
+                required="true"
+                min="20"
+                max="40"
+                #ageInput="ngModel"
+                type="number"
                 id="age"
                 name="age"
                 autocomplete="off"
                 [(ngModel)]="user.age"
+                [ngClass]="{
+                  invalid:
+                    (ageInput.touched || ageInput.dirty) && ageInput.invalid
+                }"
               />
               <label for="age" class="text">Age</label>
             </div>
+            @if(ageInput.errors &&(ageInput.touched||ageInput.dirty)){
+            <div class="invalid-text">
+              @if(ageInput.errors['required']){
+              <span>Age is required</span>
+              } @if(ageInput.errors['min']){
+              <span>Age must be grater than 19</span>
+              } @if(ageInput.errors['max']){
+              <span>Age must be less than 40</span>
+              }
+            </div>
+            }
             <div class="group select-group">
-              <select name="gender" id="gender" [(ngModel)]="user.gender">
+              <select
+                name="gender"
+                #genderInput="ngModel"
+                id="gender"
+                [(ngModel)]="user.gender"
+                required="true"
+                [ngClass]="{
+                  invalid:
+                    (genderInput.touched || genderInput.dirty) &&
+                    genderInput.invalid
+                }"
+              >
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
-              <label for="gender">Geander</label>
+              <label class="gender-label" for="gender">Geander</label>
             </div>
+            @if(genderInput.errors &&(genderInput.touched||genderInput.dirty)){
+            <div class="invalid-text">
+              @if(genderInput.errors['required']){
+              <span>Gender is required</span>
+              }
+            </div>
+            }
             <div class="group">
               <input
+              reqired="true"
                 type="text"
                 id="location"
+                #locationInput="ngModel"
                 name="location"
                 autocomplete="off"
                 [(ngModel)]="user.location"
+                [ngClass]="{
+                  invalid:
+                    (locationInput.touched || locationInput.dirty) &&
+                    locationInput.invalid
+                }"
               />
               <label for="location" class="text">Location</label>
             </div>
@@ -177,7 +253,7 @@
       </div>
     </ng-template>
   </p-stepperPanel>
-  <p-stepperPanel header="Image & Skills">
+  <p-stepperPanel header="Skills & Media">
     <ng-template
       pTemplate="content"
       let-prevCallback="prevCallback"

@@ -22,6 +22,9 @@ textarea {
   z-index: 1111;
   width: 100%;
 }
+select {
+  padding: 10px 30px;
+}
 select option {
   background-color: #1f2937;
 }
@@ -34,7 +37,7 @@ label {
   background: #1f2937;
   transition: 0.5s ease;
   z-index: 2222222;
-  height: 60px;
+  height: 59px;
   width: 99%;
   top: 2px;
   left: -15px;
@@ -42,18 +45,21 @@ label {
   text-transform: capitalize;
   font-style: italic;
 }
+.gender-label {
+  height: 61px !important;
+}
 .group input:focus,
 .group select:focus,
 .group textarea:focus {
   color: #b7a5ee;
-  border: 4px solid #b7a5ee;
+  border: 2px solid #b7a5ee;
   background-color: transparent;
 }
 .group input:focus ~ label,
 .group textarea:focus ~ label,
 .group select:focus ~ label {
   color: #b7a5ee;
-  height: 30px;
+  height: 30px !important;
   line-height: 30px;
   padding: 0 12px;
   transform: translate(-15px, -16px) scale(0.88);
@@ -104,4 +110,19 @@ label {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.group .invalid:focus,
+.group .invalid:invalid {
+  border: 2px solid red;
+}
+.group .invalid:focus ~ label,
+.group .invalid:invalid ~ label {
+  color: red;
+}
+.invalid-text {
+  display: block;
+  color: red;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  font-size: 18px;
 }
